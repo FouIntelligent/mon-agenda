@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1f8a70" />
+    <title>Agenda Programme</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="sidebar" aria-label="Formulaire de programme">
+        <div class="brand">
+          <span class="brand-mark">A</span>
+          <div>
+            <h1>Mon agenda</h1>
+            <p>Planifie tes programmes simplement.</p>
+          </div>
+        </div>
+
+        <div class="notice-panel">
+          <div>
+            <strong>Rappels téléphone</strong>
+            <p id="notification-status">Active les notifications pour recevoir un rappel 30 minutes avant.</p>
+          </div>
+          <button type="button" id="notification-button" class="ghost-button">Activer</button>
+        </div>
+
+        <form id="program-form" class="program-form">
+          <input type="hidden" id="program-id" />
+
+          <label>
+            Titre
+            <input id="title" type="text" placeholder="Ex: Réunion, cours, sport..." required />
+          </label>
+
+          <div class="two-columns">
+            <label>
+              Date
+              <input id="date" type="date" required />
+            </label>
+            <label>
+              Heure
+              <input id="time" type="time" required />
+            </label>
+          </div>
+
+          <label>
+            Catégorie
+            <select id="category">
+              <option>Personnel</option>
+              <option>Travail</option>
+              <option>Études</option>
+              <option>Santé</option>
+              <option>Famille</option>
+              <option>Autre</option>
+            </select>
+          </label>
+
+          <label>
+            Priorité
+            <select id="priority">
+              <option value="normal">Normale</option>
+              <option value="high">Importante</option>
+              <option value="low">Faible</option>
+            </select>
+          </label>
+
+          <label>
+            Notes
+            <textarea id="notes" rows="4" placeholder="Ajoute les détails utiles..."></textarea>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-button">Enregistrer</button>
+            <button type="button" id="cancel-edit" class="ghost-button" hidden>Annuler</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="content" aria-label="Liste des programmes">
+        <div class="toolbar">
+          <div>
+            <p class="eyebrow">Aujourd'hui</p>
+            <h2 id="today-label">Programmes</h2>
+          </div>
+          <div class="toolbar-controls">
+            <input id="search" type="search" placeholder="Rechercher..." />
+            <select id="filter">
+              <option value="all">Tous</option>
+              <option value="today">Aujourd'hui</option>
+              <option value="upcoming">À venir</option>
+              <option value="done">Terminés</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="summary-grid" aria-label="Résumé">
+          <div class="summary-item">
+            <span id="total-count">0</span>
+            <p>Total</p>
+          </div>
+          <div class="summary-item">
+            <span id="today-count">0</span>
+            <p>Aujourd'hui</p>
+          </div>
+          <div class="summary-item">
+            <span id="done-count">0</span>
+            <p>Terminés</p>
+          </div>
+        </div>
+
+        <div id="program-list" class="program-list"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <h3>Aucun programme</h3>
+          <p>Ajoute ton premier programme avec le formulaire à gauche.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
