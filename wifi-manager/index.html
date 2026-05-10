@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion Wi-Fi</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Wi-Fi simple</p>
+          <h1>Gestion du Wi-Fi</h1>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Espaces">
+          <button class="tab active" data-view="manager" type="button">Gérant</button>
+          <button class="tab" data-view="client" type="button">Client</button>
+        </div>
+      </header>
+
+      <section id="manager-view" class="view active" aria-label="Espace gérant">
+        <div class="grid">
+          <form id="client-form" class="panel">
+            <h2>Ajouter un client</h2>
+            <label>
+              Nom du client
+              <input id="client-name" type="text" placeholder="Ex: Mamadou" required />
+            </label>
+            <label>
+              Téléphone
+              <input id="client-phone" type="tel" placeholder="Ex: 77 000 00 00" />
+            </label>
+            <div class="two">
+              <label>
+                Forfait
+                <select id="client-plan">
+                  <option value="1 heure">1 heure</option>
+                  <option value="1 jour">1 jour</option>
+                  <option value="1 semaine">1 semaine</option>
+                  <option value="1 mois">1 mois</option>
+                </select>
+              </label>
+              <label>
+                Prix
+                <input id="client-price" type="number" min="0" value="500" />
+              </label>
+            </div>
+            <button class="primary" type="submit">Créer accès</button>
+          </form>
+
+          <section class="panel summary">
+            <h2>Résumé</h2>
+            <div class="stats">
+              <div>
+                <strong id="active-count">0</strong>
+                <span>Actifs</span>
+              </div>
+              <div>
+                <strong id="blocked-count">0</strong>
+                <span>Bloqués</span>
+              </div>
+              <div>
+                <strong id="revenue-total">0</strong>
+                <span>FCFA</span>
+              </div>
+            </div>
+            <label>
+              Nom du réseau
+              <input id="wifi-name" type="text" value="Mon WiFi" />
+            </label>
+            <label>
+              Mot de passe Wi-Fi
+              <input id="wifi-password" type="text" value="wifi-2026" />
+            </label>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>Clients</h2>
+            <input id="search-client" type="search" placeholder="Rechercher un client..." />
+          </div>
+          <div id="client-list" class="client-list"></div>
+          <div id="empty-manager" class="empty" hidden>Aucun client pour le moment.</div>
+        </section>
+      </section>
+
+      <section id="client-view" class="view" aria-label="Espace client">
+        <div class="client-portal">
+          <section class="panel">
+            <h2>Mon accès Wi-Fi</h2>
+            <p class="muted">Entre ton code client pour voir tes informations.</p>
+            <label>
+              Code client
+              <input id="access-code" type="text" placeholder="Ex: WF-1234" />
+            </label>
+            <button id="check-code" class="primary" type="button">Voir mon accès</button>
+          </section>
+
+          <section id="client-result" class="panel result">
+            <h2>Informations</h2>
+            <div class="access-card">
+              <span id="result-status" class="status">En attente</span>
+              <h3 id="result-name">Aucun code vérifié</h3>
+              <p id="result-plan">Demande ton code au gérant.</p>
+              <dl>
+                <div>
+                  <dt>Réseau</dt>
+                  <dd id="result-wifi">-</dd>
+                </div>
+                <div>
+                  <dt>Mot de passe</dt>
+                  <dd id="result-password">-</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
